@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "923304948935",
+    "project_id": "yelmtemlatenav",
+    "storage_bucket": "yelmtemlatenav.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923304948935:android:b835337700a9b35c727ae2",
+        "android_client_info": {
+          "package_name": "yelm.io.template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923304948935-kn0sd1qlmjjugn1unrts0a7cjderqe9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsEDnbsJSFGe2jhbcVl5Zel9Bb_NHxrVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923304948935-kn0sd1qlmjjugn1unrts0a7cjderqe9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
