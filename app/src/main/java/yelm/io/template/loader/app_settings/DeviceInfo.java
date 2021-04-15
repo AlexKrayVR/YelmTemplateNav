@@ -1,4 +1,4 @@
-package yelm.io.template.stuff;
+package yelm.io.template.loader.app_settings;
 
 import android.content.Context;
 import android.os.BatteryManager;

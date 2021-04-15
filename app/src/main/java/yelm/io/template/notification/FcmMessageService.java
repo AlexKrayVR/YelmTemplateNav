@@ -1,28 +1,11 @@
 package yelm.io.template.notification;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
-import android.net.Uri;
-
-import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Objects;
 
 import yelm.io.template.stuff.Logging;
-import yelm.io.template.R;
-import yelm.io.template.loader.controller.LoaderActivity;
-import yelm.io.template.stuff.NotificationChannelCreator;
 
 public class FcmMessageService extends FirebaseMessagingService {
 

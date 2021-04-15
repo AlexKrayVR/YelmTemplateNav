@@ -60,12 +60,12 @@ public interface RestAPI {
 //            @Query("lon") String lon
 //    );
 //
-//    @FormUrlEncoded
-//    @PUT("user?")
-//    Call<ResponseBody> putFCM(
-//            @Field("platform") String platform,
-//            @Field("login") String login,
-//            @Field("push") String push);
+    @FormUrlEncoded
+    @PUT("user?")
+    Call<ResponseBody> putFCM(
+            @Field("platform") String platform,
+            @Field("login") String login,
+            @Field("push") String push);
 //
 //    @FormUrlEncoded
 //    @POST("promocode?")

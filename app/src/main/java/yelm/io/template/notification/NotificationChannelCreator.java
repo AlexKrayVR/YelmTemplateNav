@@ -1,4 +1,4 @@
-package yelm.io.template.stuff;
+package yelm.io.template.notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

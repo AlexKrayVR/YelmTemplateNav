@@ -6,7 +6,7 @@ import yelm.io.template.BuildConfig;
 
 public class Logging {
     private static String error = "AppError";
-    private static String debug = "AppMessage";
+    private static String debug = "AppDebug";
 
     public static void logDebug(String message) {
         if (BuildConfig.DEBUG) {
