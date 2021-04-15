@@ -1,4 +1,4 @@
-package yelm.io.template.api.loader.model;
+package yelm.io.template.loader.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

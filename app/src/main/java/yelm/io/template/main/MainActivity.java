@@ -1,4 +1,4 @@
-package yelm.io.template;
+package yelm.io.template.main;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import yelm.io.template.R;
 
 public class MainActivity extends AppCompatActivity {
 

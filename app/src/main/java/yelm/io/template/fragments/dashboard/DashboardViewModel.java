@@ -1,4 +1,4 @@
-package yelm.io.template.ui.dashboard;
+package yelm.io.template.fragments.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,10 +1,12 @@
-package yelm.io.template;
+package yelm.io.template.stuff;
 
 import android.util.Log;
 
+import yelm.io.template.BuildConfig;
+
 public class Logging {
-    private static String error = "ErrorMessage";
-    private static String debug = "DebugMessage";
+    private static String error = "AppError";
+    private static String debug = "AppMessage";
 
     public static void logDebug(String message) {
         if (BuildConfig.DEBUG) {

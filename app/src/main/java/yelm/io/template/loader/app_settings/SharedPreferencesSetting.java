@@ -1,4 +1,4 @@
-package yelm.io.template.api.loader.settings;
+package yelm.io.template.loader.app_settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,10 +28,11 @@ public class SharedPreferencesSetting {
     private static SharedPreferences settings = null;
     private static final String APP_PREFERENCES = "settings";
 
-    public static SharedPreferences initSharedPreferencesSettings(Context context) {
-        if (settings == null) {
-            settings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        }
+    public static void initSharedPreferencesSettings(Context context) {
+        settings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+    }
+
+    public static SharedPreferences getSettings(){
         return settings;
     }
 
