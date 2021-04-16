@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import yelm.io.template.Constants.Constants;
+import yelm.io.template.Constants.Statistics;
 import yelm.io.template.R;
 import yelm.io.template.api.client.RetrofitClient;
 import yelm.io.template.api.interfaces.RestAPI;
@@ -30,11 +31,11 @@ import yelm.io.template.loader.model.ApplicationSettings;
 import yelm.io.template.loader.model.UserLoginResponse;
 import yelm.io.template.main.MainActivity;
 import yelm.io.template.loader.app_settings.DeviceInfo;
+import yelm.io.template.stuff.InternetConnectivity;
 import yelm.io.template.stuff.Logging;
-import yelm.io.template.notification.NotificationChannelCreator;
 import yelm.io.template.stuff.SystemServiceState;
 
-public class LoaderActivity extends AppCompatActivity {
+public class LoaderActivity extends AppCompatActivity implements InternetConnectivity.Listener {
     ActivityLoaderBinding binding;
     private static final int INTERNET_SETTINGS_CODE = 91;
 
@@ -44,9 +45,19 @@ public class LoaderActivity extends AppCompatActivity {
         binding = ActivityLoaderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SharedPreferencesSetting.initSharedPreferencesSettings(this);
-        NotificationChannelCreator.createNotificationChannel(this);
         initRoom();
-        launchApp();
+        InternetConnectivity.registerNetworkCallback(this);
+    }
+
+    /**
+     * if network is not connected show snackbar for the user to turn on the internet connection
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!SystemServiceState.isNetworkConnected(this)) {
+            showSnackbar();
+        }
     }
 
     /**
@@ -58,30 +69,27 @@ public class LoaderActivity extends AppCompatActivity {
         Common.userAddressesDao = Common.database.userAddressesDao();
     }
 
-    /**
-     * launch the app, if network is not connected show snackbar for the user to turn on the internet connection
-     */
-    private void launchApp() {
-        if (SystemServiceState.isNetworkConnected(this)) {
-            IndependentQueries.sendStatistic("open_app");
-            checkUser();
-        } else {
-            Snackbar snackbar = Snackbar.make(
-                    findViewById(R.id.layout),
-                    R.string.loaderActivityNoNetworkConnection,
-                    Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.loaderActivityUpdateNetworkConnection, view -> {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            startActivityForResult(new Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY), INTERNET_SETTINGS_CODE);
-                        } else {
-                            //startActivityForResult(new Intent(Settings.ACTION_WIFI_SETTINGS), INTERNET_SETTINGS_CODE);
-                            startActivityForResult(new Intent(Settings.ACTION_NETWORK_OPERATOR_SETTINGS), INTERNET_SETTINGS_CODE);
-                        }
-                    });
-            snackbar.show();
-        }
+    @Override
+    protected void onDestroy() {
+        InternetConnectivity.unregisterNetworkCallback(this);
+        super.onDestroy();
     }
 
+    private void showSnackbar() {
+        Snackbar snackbar = Snackbar.make(
+                findViewById(R.id.layout),
+                R.string.loaderActivityNoNetworkConnection,
+                Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.loaderActivityUpdateNetworkConnection, view -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        startActivityForResult(new Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY), INTERNET_SETTINGS_CODE);
+                    } else {
+                        //startActivityForResult(new Intent(Settings.ACTION_WIFI_SETTINGS), INTERNET_SETTINGS_CODE);
+                        startActivityForResult(new Intent(Settings.ACTION_NETWORK_OPERATOR_SETTINGS), INTERNET_SETTINGS_CODE);
+                    }
+                });
+        snackbar.show();
+    }
 
     /**
      * get main settings of application such as: MERCHANT_PUBLIC_ID, MIN_ORDER_PRICE, CURRENCY, etc
@@ -235,5 +243,20 @@ public class LoaderActivity extends AppCompatActivity {
         }
         startActivity(intent);
         finish();
+    }
+
+    /**
+     * launch the app if internet is available, if network is not connected show snackbar for the user to turn on the internet connection
+     *
+     * @param status from InternetConnectivity.class that
+     */
+    @Override
+    public void internetConnectivityStatus(boolean status) {
+        if (status) {
+            IndependentQueries.sendStatistic(Statistics.OPEN_APP.getReason());
+            checkUser();
+        } else {
+            showSnackbar();
+        }
     }
 }

@@ -14,6 +14,7 @@ public class FcmMessageService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NotNull String s) {
         super.onNewToken(s);
+        NotificationChannelCreator.createNotificationChannel(this);
     }
 
     @Override
