@@ -1,4 +1,4 @@
-package yelm.io.template.fragments.home;
+package yelm.io.template.fragments.stock;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

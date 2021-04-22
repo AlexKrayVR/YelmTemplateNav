@@ -69,6 +69,9 @@ public class LoaderActivity extends AppCompatActivity implements InternetConnect
         Common.userAddressesDao = Common.database.userAddressesDao();
     }
 
+    /**
+     * unregister NetworkCallback
+     */
     @Override
     protected void onDestroy() {
         InternetConnectivity.unregisterNetworkCallback(this);
@@ -108,6 +111,8 @@ public class LoaderActivity extends AppCompatActivity implements InternetConnect
                     public void onResponse(@NotNull Call<ApplicationSettings> call, @NotNull final Response<ApplicationSettings> response) {
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
+                                Logging.logDebug("ApplicationSettings: " + response.body().toString());
+
                                 Constants.MERCHANT_PUBLIC_ID = response.body().getSettings().getPublicId();
                                 SharedPreferencesSetting.setData(SharedPreferencesSetting.MIN_PRICE_FOR_FREE_DELIVERY, response.body().getSettings().getMinDeliveryPrice());
                                 SharedPreferencesSetting.setData(SharedPreferencesSetting.MIN_ORDER_PRICE, response.body().getSettings().getMinOrderPrice());
@@ -136,7 +141,7 @@ public class LoaderActivity extends AppCompatActivity implements InternetConnect
     }
 
     /**
-     * at the first start of app we create user by pull request
+     * at the first start of app we check if user exist - if not we create user by pull request, otherwise continue collect app info
      */
     private void checkUser() {
         if (SharedPreferencesSetting.getSettings().contains(SharedPreferencesSetting.USER_NAME)) {

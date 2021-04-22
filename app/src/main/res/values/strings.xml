@@ -8,10 +8,22 @@
     <string name="loaderActivityUpdateNetworkConnection">Включить</string>
     <string name="loaderActivityNoNetworkConnection">Нет подключения к интернету</string>
 
+    <!-- MaiActivity -->
+    <string name="mainActivityStock">Акции</string>
+    <string name="mainActivityAccount">Аккаунт</string>
+    <string name="mainActivityBookmarks">Закладки</string>
+    <string name="mainActivityNewItems">Новинки</string>
+
+    <!-- ItemNewItem -->
+    <string name="itemNewItemNew">NEW</string>
+
+
+
 
     <!--Notification Channel -->
     <string name="notificationChannelId">channel</string>
     <string name="notificationChannelName">@string/app_name</string>
+
 
 
 
