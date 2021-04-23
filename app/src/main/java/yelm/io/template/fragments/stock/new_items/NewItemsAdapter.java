@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.HashSet;
 import java.util.List;
 
 import yelm.io.template.R;
@@ -17,6 +18,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.Slider
 
     private List<NewItem> items;
     Context context;
+    HashSet<Integer> countryHashSet = new HashSet<>();
 
     public NewItemsAdapter(List<NewItem> items, Context context) {
         this.items = items;
@@ -26,29 +28,31 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.Slider
     @NonNull
     @Override
     public SliderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SliderViewHolder(ItemNewItemsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        SliderViewHolder sliderViewHolder = new SliderViewHolder(ItemNewItemsBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+
+        LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp1.setMargins(0, (int) context.getResources().getDimension(R.dimen.dimens_20dp), 0, 0);
+        sliderViewHolder.binding.name.setLayoutParams(lp1);
+        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp2.setMargins(0, (int) context.getResources().getDimension(R.dimen.dimens_12dp), 0, 0);
+        sliderViewHolder.binding.description.setLayoutParams(lp2);
+        sliderViewHolder.binding.price.setLayoutParams(lp2);
+
+        return sliderViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
         NewItem current = items.get(position);
         holder.binding.name.setText(current.getName());
-        holder.binding.name.setLineSpacing(1,1.4f);
+        holder.binding.name.setLineSpacing(1, 1.4f);
         holder.binding.description.setText(current.getDescription());
-        holder.binding.description.setLineSpacing(1,1.4f);
+        holder.binding.description.setLineSpacing(1, 1.4f);
 
         holder.binding.price.setText(current.getPrice());
         holder.binding.image.setImageResource(current.getImageUrl());
 
-        LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp1.setMargins(0, (int) context.getResources().getDimension(R.dimen.dimens_20dp), 0, 0);
-        holder.binding.name.setLayoutParams(lp1);
 
-        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp2.setMargins(0, (int) context.getResources().getDimension(R.dimen.dimens_12dp), 0, 0);
-
-        holder.binding.description.setLayoutParams(lp2);
-        holder.binding.price.setLayoutParams(lp2);
     }
 
     @Override

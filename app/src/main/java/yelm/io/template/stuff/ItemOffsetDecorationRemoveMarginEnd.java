@@ -22,16 +22,21 @@ public class ItemOffsetDecorationRemoveMarginEnd extends RecyclerView.ItemDecora
     @Override
     public void getItemOffsets(@NotNull Rect outRect, @NotNull View view,
                                RecyclerView parent, RecyclerView.State state) {
-        if (parent.getChildAdapterPosition(view) == (state.getItemCount() - 1)) {
-            ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) view.findViewById(R.id.image).getLayoutParams();
-            newLayoutParams.rightMargin = 0;
-            view.findViewById(R.id.image).setLayoutParams(newLayoutParams);
-        }
 
-        if (parent.getChildAdapterPosition(view) == 0) {
-            ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) view.findViewById(R.id.layoutText).getLayoutParams();
-            newLayoutParams.leftMargin = (int)context.getResources().getDimension(R.dimen.dimens_20dp);
-            view.findViewById(R.id.layoutText).setLayoutParams(newLayoutParams);
+        ConstraintLayout.LayoutParams imageParams = (ConstraintLayout.LayoutParams) view.findViewById(R.id.image).getLayoutParams();
+        if (parent.getChildAdapterPosition(view) == (state.getItemCount() - 1)) {
+            imageParams.rightMargin = 0;
+        } else {
+            imageParams.rightMargin = (int) context.getResources().getDimension(R.dimen.dimens_24dp);
         }
+        view.findViewById(R.id.image).setLayoutParams(imageParams);
+
+        ConstraintLayout.LayoutParams layoutTextParams = (ConstraintLayout.LayoutParams) view.findViewById(R.id.layoutText).getLayoutParams();
+        if (parent.getChildAdapterPosition(view) == 0) {
+            layoutTextParams.leftMargin = (int) context.getResources().getDimension(R.dimen.dimens_20dp);
+        } else {
+            layoutTextParams.leftMargin = 0;
+        }
+        view.findViewById(R.id.layoutText).setLayoutParams(layoutTextParams);
     }
 }

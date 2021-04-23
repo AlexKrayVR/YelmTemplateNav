@@ -40,7 +40,6 @@ public class StockFragment extends Fragment {
         items.add(new SliderItem(R.drawable.fifth));
         binding.pager.setAdapter(new SliderAdapter(items, getActivity(), binding.pager));
 
-
         ViewPager2.PageTransformer parallax = new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
@@ -61,18 +60,34 @@ public class StockFragment extends Fragment {
 
     private void setNewItems() {
         List<NewItem> items = new ArrayList<>();
-        items.add(new NewItem(R.drawable.first, "Item 1", "Description 1", "122 ₽"));
-        items.add(new NewItem(R.drawable.second, "Item 2 with long naming sdfhghgrt5 ", "Description 2: long text with something", "4567 ₽"));
-        items.add(new NewItem(R.drawable.sixth, "Item 3", "Description 3", "466.80 ₽"));
-        items.add(new NewItem(R.drawable.fourth, "Item 4", "Description 4", "223 ₽"));
-        items.add(new NewItem(R.drawable.fifth, "Item 5", "Description 5", "79 ₽"));
+        items.add(new NewItem(1,R.drawable.first, "Item 1", "Description 1", "122 ₽"));
+        items.add(new NewItem(2,R.drawable.second, "Item 2 with long naming sdfhghgrt5 ", "Description 2: long text with something", "4567 ₽"));
+        items.add(new NewItem(3,R.drawable.sixth, "Item 3", "Description 3", "466.80 ₽"));
+        items.add(new NewItem(4,R.drawable.fourth, "Item 4", "Description 4", "223 ₽"));
+        items.add(new NewItem(5,R.drawable.fifth, "Item 5", "Description 5", "79 ₽"));
+
+        items.add(new NewItem(6,R.drawable.first, "Item 1", "Description 1", "122 ₽"));
+        items.add(new NewItem(7,R.drawable.second, "Item 2 with long naming sdfhghgrt5 ", "Description 2: long text with something", "4567 ₽"));
+        items.add(new NewItem(8,R.drawable.sixth, "Item 3", "Description 3", "466.80 ₽"));
+        items.add(new NewItem(9,R.drawable.fourth, "Item 4", "Description 4", "223 ₽"));
+        items.add(new NewItem(10,R.drawable.fifth, "Item 5", "Description 5", "79 ₽"));
+
+        items.add(new NewItem(11,R.drawable.first, "Item 1", "Description 1", "122 ₽"));
+        items.add(new NewItem(12,R.drawable.second, "Item 2 with long naming sdfhghgrt5 ", "Description 2: long text with something", "4567 ₽"));
+        items.add(new NewItem(13,R.drawable.sixth, "Item 3", "Description 3", "466.80 ₽"));
+        items.add(new NewItem(14,R.drawable.fourth, "Item 4", "Description 4", "223 ₽"));
+        items.add(new NewItem(15,R.drawable.fifth, "Item 5", "Description 5", "79 ₽"));
+
+        items.add(new NewItem(16,R.drawable.first, "Item 1", "Description 1", "122 ₽"));
+        items.add(new NewItem(17,R.drawable.second, "Item 2 with long naming sdfhghgrt5 ", "Description 2: long text with something", "4567 ₽"));
+        items.add(new NewItem(18,R.drawable.sixth, "Item 3", "Description 3", "466.80 ₽"));
+        items.add(new NewItem(19,R.drawable.fourth, "Item 4", "Description 4", "223 ₽"));
+        items.add(new NewItem(20,R.drawable.fifth, "Item 5", "Description 5", "79 ₽"));
+
+
         binding.recyclerNewItems.setHasFixedSize(true);
         binding.recyclerNewItems.addItemDecoration(new ItemOffsetDecorationRemoveMarginEnd(getContext()));
         binding.recyclerNewItems.setAdapter(new NewItemsAdapter(items, getContext()));
-
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//        lp.setMargins(0, (int) getResources().getDimension(R.dimen.dimens_24dp), 0, 0);
-//        binding.recyclerNewItems.setLayoutParams(lp);
 
     }
 

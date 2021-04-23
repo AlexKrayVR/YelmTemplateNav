@@ -2,12 +2,14 @@ package yelm.io.template.fragments.stock.new_items;
 
 public class NewItem {
 
+    long id;
     int imageUrl;
     String name;
     String description;
     String price;
 
-    public NewItem(int imageUrl, String name, String description, String price) {
+    public NewItem(long id, int imageUrl, String name, String description, String price) {
+        this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
         this.description = description;
@@ -44,5 +46,13 @@ public class NewItem {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
